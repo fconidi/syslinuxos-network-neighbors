@@ -1,0 +1,25 @@
+#!/usr/bin/python3
+"""Polkit-authorized, fixed read-only query of the LLDP daemon."""
+
+import subprocess
+import sys
+
+
+def main():
+    if len(sys.argv) != 1:
+        return 2
+    try:
+        result = subprocess.run(
+            ["/usr/sbin/lldpcli", "-f", "json0", "show", "neighbors", "details"],
+            capture_output=True, timeout=8, check=False,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        return 1
+    if result.returncode or len(result.stdout) > 4_000_000:
+        return 1
+    sys.stdout.buffer.write(result.stdout)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

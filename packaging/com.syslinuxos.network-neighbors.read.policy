@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN" "http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd">
+<policyconfig>
+  <action id="com.syslinuxos.network-neighbors.read">
+    <description>Read neighboring network devices</description>
+    <description xml:lang="it">Leggi i dispositivi di rete vicini</description>
+    <description xml:lang="fr">Lire les appareils réseau voisins</description>
+    <description xml:lang="de">Benachbarte Netzwerkgeräte lesen</description>
+    <description xml:lang="es">Leer dispositivos de red vecinos</description>
+    <message>Authentication is required to read LLDP neighbors</message>
+    <message xml:lang="it">Autenticazione richiesta per leggere i vicini LLDP</message>
+    <message xml:lang="fr">Authentification requise pour lire les voisins LLDP</message>
+    <message xml:lang="de">Authentifizierung zum Lesen von LLDP-Nachbarn erforderlich</message>
+    <message xml:lang="es">Se requiere autenticación para leer vecinos LLDP</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/lib/syslinuxos-network-neighbors/read-helper</annotate>
+  </action>
+</policyconfig>

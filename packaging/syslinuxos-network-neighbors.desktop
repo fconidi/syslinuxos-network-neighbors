@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Name=SysLinuxOS Network Neighbors
+Name[it]=SysLinuxOS Vicini di rete
+Name[fr]=SysLinuxOS Voisins réseau
+Name[de]=SysLinuxOS Netzwerknachbarn
+Name[es]=SysLinuxOS Vecinos de red
+Comment=See the switch and port connected to this computer
+Comment[it]=Mostra lo switch e la porta collegati a questo computer
+Comment[fr]=Voir le commutateur et le port reliés à cet ordinateur
+Comment[de]=Switch und Port dieses Computers anzeigen
+Comment[es]=Ver el switch y el puerto conectados a este equipo
+Exec=syslinuxos-network-neighbors
+Icon=network-wired
+Terminal=false
+Categories=Network;
+Keywords=LLDP;switch;port;network;
+StartupNotify=true
