@@ -71,13 +71,17 @@ def parse_neighbors(output):
 
 def read_neighbors(runner=subprocess.run):
     argv = ["/usr/sbin/lldpcli", "-f", "json0", "show", "neighbors", "details"]
+    permission_denied = False
     try:
         result = runner(argv, capture_output=True, text=True, timeout=8, check=False)
     except FileNotFoundError as exc:
         raise NeighborError("not_installed") from exc
+    except PermissionError:
+        permission_denied = True
+        result = None
     except subprocess.TimeoutExpired as exc:
         raise NeighborError("timeout") from exc
-    if result.returncode and "permission denied" in result.stderr.lower():
+    if permission_denied or (result.returncode and "permission denied" in result.stderr.lower()):
         try:
             result = runner(["/usr/bin/pkexec", "/usr/lib/syslinuxos-network-neighbors/read-helper"],
                             capture_output=True, text=True, timeout=90, check=False)

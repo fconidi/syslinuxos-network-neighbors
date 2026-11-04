@@ -38,4 +38,4 @@ import sys
 import xml.etree.ElementTree as ET
 ET.parse(sys.argv[1])
 PY
-dpkg-deb --root-owner-group --build "$STAGE" "$OUT/syslinuxos-network-neighbors_0.1.0_all.deb"
+dpkg-deb --root-owner-group --build "$STAGE" "$OUT/syslinuxos-network-neighbors_0.1.1_all.deb"

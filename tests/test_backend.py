@@ -46,6 +46,16 @@ class BackendTests(unittest.TestCase):
         self.assertEqual(len(read_neighbors(runner=runner)), 2)
         self.assertEqual(seen[1], ["/usr/bin/pkexec", "/usr/lib/syslinuxos-network-neighbors/read-helper"])
 
+    def test_permission_error_uses_read_only_helper(self):
+        seen = []
+        def runner(argv, **kwargs):
+            seen.append(argv)
+            if len(seen) == 1:
+                raise PermissionError(13, "Permission denied", argv[0])
+            return type("Result", (), {"returncode": 0, "stdout": '{"lldp":[]}', "stderr": ""})()
+        self.assertEqual(read_neighbors(runner=runner), [])
+        self.assertEqual(seen[1], ["/usr/bin/pkexec", "/usr/lib/syslinuxos-network-neighbors/read-helper"])
+
 
 if __name__ == "__main__":
     unittest.main()
