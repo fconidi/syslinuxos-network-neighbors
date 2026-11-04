@@ -14,7 +14,7 @@ from backend import Neighbor
 class WindowTests(unittest.TestCase):
     def test_neighbor_is_visible_with_details(self):
         sample = Neighbor("enp2s0", "switch-a", "Gi1/0/24", "Desk 12",
-                          "aa:bb:cc:dd:ee:ff", "192.0.2.10", "LLDP")
+                          "aa:bb:cc:dd:ee:ff", "192.0.2.10", "LLDP", "1")
         window = NeighborWindow(reader=lambda: [sample], language="it")
         window.show_all()
         until = time.monotonic() + 3
@@ -25,7 +25,9 @@ class WindowTests(unittest.TestCase):
         self.assertTrue(window.refresh_button.get_sensitive())
         self.assertEqual(window.status.get_text(), "Vicini trovati: 1")
         self.assertEqual(window.model[0][1:4], ["enp2s0", "switch-a", "Gi1/0/24"])
+        self.assertEqual(window.model[0][4], "1")
         window._selection.select_path(0)
+        self.assertEqual(window.detail_values["vlan_pvid"].get_text(), "1")
         self.assertEqual(window.detail_values["management_ip"].get_text(), "192.0.2.10")
         window.destroy()
 

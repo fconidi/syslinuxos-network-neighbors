@@ -1,6 +1,6 @@
 # SysLinuxOS Network Neighbors
 
-Graphical viewer for the network device directly connected to each of this computer's interfaces. It shows the local interface, device name, remote port, protocol and available LLDP details. The app reads `lldpcli`; it does not change network settings.
+Graphical viewer for the network device directly connected to each of this computer's interfaces. It shows the local interface, device name, remote port, advertised port VLAN ID (PVID), protocol and available LLDP details. The app reads `lldpcli`; it does not change network settings.
 
 The interface follows the desktop language in English, Italian, French, German and Spanish.
 
@@ -12,7 +12,7 @@ The package does not change the daemon configuration. If the daemon is unavailab
 
 ## Use
 
-Open **SysLinuxOS Network Neighbors** from **Networking** or **SysLinuxOS Tools**, or run `syslinuxos-network-neighbors`. Select a row for details and use **Refresh** to read the current neighbor list. An empty list can mean that the connected switch does not send LLDP, the cable is disconnected, or no announcement has arrived yet. The app shows directly connected devices; it does not map the whole network.
+Open **SysLinuxOS Network Neighbors** from **Networking** or **SysLinuxOS Tools**, or run `syslinuxos-network-neighbors`. Select a row for details and use **Refresh** to read the current neighbor list. The PVID appears only when the switch announces it through LLDP; it does not describe every tagged VLAN allowed on the port. An empty list can mean that the connected switch does not send LLDP, the cable is disconnected, or no announcement has arrived yet. The app shows directly connected devices; it does not map the whole network.
 
 ## Build
 

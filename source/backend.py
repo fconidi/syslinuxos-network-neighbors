@@ -18,6 +18,7 @@ class Neighbor:
     chassis_id: str
     management_ip: str
     protocol: str
+    vlan_pvid: str
 
 
 def _items(value):
@@ -57,6 +58,11 @@ def parse_neighbors(output):
             chassis = next((v for v in _items(interface.get("chassis")) if isinstance(v, dict)), {})
             port = next((v for v in _items(interface.get("port")) if isinstance(v, dict)), {})
             chassis_id = _first_text(chassis.get("id"))
+            vlan_pvid = next((
+                _first_text(vlan.get("vlan-id"))
+                for vlan in _items(interface.get("vlan"))
+                if isinstance(vlan, dict) and vlan.get("pvid") in (True, "yes")
+            ), "")
             rows.append(Neighbor(
                 local_interface=_first_text(interface.get("name")),
                 name=_first_text(chassis.get("name")) or chassis_id,
@@ -65,6 +71,7 @@ def parse_neighbors(output):
                 chassis_id=chassis_id,
                 management_ip=_first_text(chassis.get("mgmt-ip")),
                 protocol=_first_text(interface.get("via")),
+                vlan_pvid=vlan_pvid,
             ))
     return sorted(rows, key=lambda row: (row.local_interface, row.name, row.remote_port))
 

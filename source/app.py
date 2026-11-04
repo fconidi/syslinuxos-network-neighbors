@@ -18,7 +18,7 @@ class NeighborWindow(Gtk.Window):
         self.reader = reader
         self.rows = []
         super().__init__(title=tr(self.language, "title"))
-        self.set_default_size(820, 530)
+        self.set_default_size(880, 530)
         self.set_border_width(20)
 
         layout = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=14)
@@ -42,12 +42,12 @@ class NeighborWindow(Gtk.Window):
         self.status.set_line_wrap(True)
         layout.pack_start(self.status, False, False, 0)
 
-        self.model = Gtk.ListStore(int, str, str, str, str)
+        self.model = Gtk.ListStore(int, str, str, str, str, str)
         tree = Gtk.TreeView(model=self.model)
         tree.set_headers_visible(True)
         tree.set_hexpand(True)
         tree.set_vexpand(True)
-        for index, key in enumerate(("interface", "device", "port", "protocol"), start=1):
+        for index, key in enumerate(("interface", "device", "port", "vlan_pvid", "protocol"), start=1):
             cell = Gtk.CellRendererText()
             cell.set_property("ellipsize", 3)
             column = Gtk.TreeViewColumn(tr(self.language, key), cell, text=index)
@@ -66,7 +66,7 @@ class NeighborWindow(Gtk.Window):
         grid = Gtk.Grid(column_spacing=16, row_spacing=7, margin=12)
         details_frame.add(grid)
         self.detail_values = {}
-        for row, key in enumerate(("port_description", "chassis_id", "management_ip")):
+        for row, key in enumerate(("port_description", "vlan_pvid", "chassis_id", "management_ip")):
             label = Gtk.Label(label=tr(self.language, key), xalign=0)
             value = Gtk.Label(label=tr(self.language, "none"), xalign=0)
             value.set_selectable(True)
@@ -105,7 +105,8 @@ class NeighborWindow(Gtk.Window):
         self.model.clear()
         for index, neighbor in enumerate(rows):
             self.model.append((index, neighbor.local_interface, neighbor.name,
-                               neighbor.remote_port, neighbor.protocol))
+                               neighbor.remote_port, neighbor.vlan_pvid or tr(self.language, "none"),
+                               neighbor.protocol))
         self.on_selection_changed(self._selection)
         self.status.set_text(tr(self.language, error) if error else
                              tr(self.language, "found", count=len(rows)) if rows else

@@ -7,7 +7,7 @@ CATALOGS = {
     "en": {
         "title": "Network Neighbors", "subtitle": "Devices connected to this computer's network ports",
         "refresh": "Refresh", "interface": "Local interface", "device": "Neighbor", "port": "Remote port",
-        "protocol": "Protocol", "details": "Details", "port_description": "Port description",
+        "protocol": "Protocol", "vlan_pvid": "Port VLAN (PVID)", "details": "Details", "port_description": "Port description",
         "chassis_id": "Chassis ID", "management_ip": "Management IP", "none": "—",
         "scanning": "Reading neighbors…", "empty": "No neighbors reported yet. Check the cable and LLDP on the switch, then refresh.",
         "found": "{count} neighbor(s) found", "not_installed": "lldpd is not installed.",
@@ -19,7 +19,7 @@ CATALOGS = {
     "it": {
         "title": "Vicini di rete", "subtitle": "Dispositivi collegati alle porte di rete di questo computer",
         "refresh": "Aggiorna", "interface": "Interfaccia locale", "device": "Vicino", "port": "Porta remota",
-        "protocol": "Protocollo", "details": "Dettagli", "port_description": "Descrizione porta",
+        "protocol": "Protocollo", "vlan_pvid": "VLAN porta (PVID)", "details": "Dettagli", "port_description": "Descrizione porta",
         "chassis_id": "ID chassis", "management_ip": "IP di gestione", "none": "—",
         "scanning": "Lettura dei vicini…", "empty": "Nessun vicino segnalato. Controlla il cavo e LLDP sullo switch, poi aggiorna.",
         "found": "Vicini trovati: {count}", "not_installed": "lldpd non è installato.",
@@ -31,7 +31,7 @@ CATALOGS = {
     "fr": {
         "title": "Voisins réseau", "subtitle": "Appareils connectés aux ports réseau de cet ordinateur",
         "refresh": "Actualiser", "interface": "Interface locale", "device": "Voisin", "port": "Port distant",
-        "protocol": "Protocole", "details": "Détails", "port_description": "Description du port",
+        "protocol": "Protocole", "vlan_pvid": "VLAN du port (PVID)", "details": "Détails", "port_description": "Description du port",
         "chassis_id": "ID du châssis", "management_ip": "IP de gestion", "none": "—",
         "scanning": "Lecture des voisins…", "empty": "Aucun voisin signalé. Vérifiez le câble et LLDP sur le commutateur, puis actualisez.",
         "found": "Voisins trouvés : {count}", "not_installed": "lldpd n'est pas installé.",
@@ -43,7 +43,7 @@ CATALOGS = {
     "de": {
         "title": "Netzwerknachbarn", "subtitle": "Geräte an den Netzwerkanschlüssen dieses Computers",
         "refresh": "Aktualisieren", "interface": "Lokale Schnittstelle", "device": "Nachbar", "port": "Entfernter Port",
-        "protocol": "Protokoll", "details": "Details", "port_description": "Portbeschreibung",
+        "protocol": "Protokoll", "vlan_pvid": "Port-VLAN (PVID)", "details": "Details", "port_description": "Portbeschreibung",
         "chassis_id": "Chassis-ID", "management_ip": "Management-IP", "none": "—",
         "scanning": "Nachbarn werden gelesen…", "empty": "Keine Nachbarn gemeldet. Kabel und LLDP am Switch prüfen und aktualisieren.",
         "found": "Gefundene Nachbarn: {count}", "not_installed": "lldpd ist nicht installiert.",
@@ -55,7 +55,7 @@ CATALOGS = {
     "es": {
         "title": "Vecinos de red", "subtitle": "Dispositivos conectados a los puertos de red de este equipo",
         "refresh": "Actualizar", "interface": "Interfaz local", "device": "Vecino", "port": "Puerto remoto",
-        "protocol": "Protocolo", "details": "Detalles", "port_description": "Descripción del puerto",
+        "protocol": "Protocolo", "vlan_pvid": "VLAN del puerto (PVID)", "details": "Detalles", "port_description": "Descripción del puerto",
         "chassis_id": "ID del chasis", "management_ip": "IP de gestión", "none": "—",
         "scanning": "Leyendo vecinos…", "empty": "No se detectan vecinos. Compruebe el cable y LLDP en el switch y actualice.",
         "found": "Vecinos encontrados: {count}", "not_installed": "lldpd no está instalado.",

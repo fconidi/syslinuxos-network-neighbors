@@ -6,7 +6,8 @@ from backend import NeighborError, parse_neighbors, read_neighbors
 
 SAMPLE = {"lldp": [{"interface": [
     {"name": "enp2s0", "via": "LLDP", "chassis": [{"name": [{"value": "switch-a"}], "id": [{"value": "aa:bb:cc:dd:ee:ff"}], "mgmt-ip": [{"value": "192.0.2.10"}]}],
-     "port": [{"id": [{"value": "Gi1/0/24"}], "descr": [{"value": "Desk 12"}]}]},
+     "port": [{"id": [{"value": "Gi1/0/24"}], "descr": [{"value": "Desk 12"}]}],
+     "vlan": [{"vlan-id": "1", "pvid": True}, {"vlan-id": "20", "pvid": False}]},
     {"name": "enp3s0", "via": "LLDP", "chassis": [{"id": [{"value": "11:22:33:44:55:66"}]}],
      "port": [{"id": [{"value": "Ethernet1"}]}]},
 ]}]}
@@ -19,7 +20,9 @@ class BackendTests(unittest.TestCase):
         self.assertEqual((rows[0].local_interface, rows[0].name, rows[0].remote_port),
                          ("enp2s0", "switch-a", "Gi1/0/24"))
         self.assertEqual(rows[0].management_ip, "192.0.2.10")
+        self.assertEqual(rows[0].vlan_pvid, "1")
         self.assertEqual(rows[1].name, "11:22:33:44:55:66")
+        self.assertEqual(rows[1].vlan_pvid, "")
 
     def test_empty_and_malformed_data(self):
         self.assertEqual(parse_neighbors('{"lldp":[]}'), [])
