@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <title>SysLinuxOS Network Neighbors</title>
+  <desc>A network switch with one highlighted port inside a blue circle.</desc>
+  <circle cx="64" cy="64" r="58" fill="#142e57"/>
+  <circle cx="64" cy="64" r="52" fill="none" stroke="#397ac5" stroke-width="2"/>
+  <rect x="24" y="43" width="80" height="43" rx="13" fill="#f3f6fb"/>
+  <rect x="34" y="55" width="12" height="15" rx="3" fill="#2467b5"/>
+  <rect x="50" y="55" width="12" height="15" rx="3" fill="#2467b5"/>
+  <rect x="66" y="55" width="12" height="15" rx="3" fill="#2467b5"/>
+  <rect x="82" y="55" width="12" height="15" rx="3" fill="#13a8cc"/>
+  <path d="M88 75v17" fill="none" stroke="#13a8cc" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="88" cy="100" r="7" fill="#13a8cc" stroke="#f3f6fb" stroke-width="3"/>
+</svg>

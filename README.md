@@ -6,13 +6,13 @@ The interface follows the desktop language in English, Italian, French, German a
 
 ## Requirements
 
-Install `lldpd` on SysLinuxOS 13 or Debian 13 and start its service. If you want the daemon to receive LLDP without announcing this computer, set `DAEMON_ARGS="-r"` in `/etc/default/lldpd` and restart `lldpd.service`. `lldpd` may announce the computer during its initial installation before this setting takes effect. Consult your network policy before enabling it.
+Installing this package also installs `lldpd` on SysLinuxOS 13 or Debian 13. Its service may start and announce this computer. To receive LLDP without announcing the computer, set `DAEMON_ARGS="-r"` in `/etc/default/lldpd` and restart `lldpd.service`. Consult your network policy before enabling it.
 
-The package does not install or configure `lldpd` automatically. If the daemon is absent or unavailable, the window shows a status message. If access to the `lldpd` control socket is restricted, the app requests desktop authorization and uses a helper that runs only the fixed read-only neighbor query.
+The package does not change the daemon configuration. If the daemon is unavailable, the window shows a status message. If access to the `lldpd` control socket is restricted, the app requests desktop authorization and uses a helper that runs only the fixed read-only neighbor query.
 
 ## Use
 
-Open **SysLinuxOS Network Neighbors** from **SysLinuxOS Tools**, or run `syslinuxos-network-neighbors`. Select a row for details and use **Refresh** to read the current neighbor list. An empty list can mean that the connected switch does not send LLDP, the cable is disconnected, or no announcement has arrived yet. The app shows directly connected devices; it does not map the whole network.
+Open **SysLinuxOS Network Neighbors** from **Networking** or **SysLinuxOS Tools**, or run `syslinuxos-network-neighbors`. Select a row for details and use **Refresh** to read the current neighbor list. An empty list can mean that the connected switch does not send LLDP, the cable is disconnected, or no announcement has arrived yet. The app shows directly connected devices; it does not map the whole network.
 
 ## Build
 

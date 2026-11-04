@@ -16,6 +16,8 @@ for source in backend.py i18n.py app.py; do
     install -Dm644 "$HERE/source/$source" "$STAGE/usr/lib/syslinuxos-network-neighbors/$source"
 done
 install -Dm755 "$HERE/source/read-helper" "$STAGE/usr/lib/syslinuxos-network-neighbors/read-helper"
+install -Dm644 "$HERE/images/syslinuxos-network-neighbors.svg" \
+    "$STAGE/usr/share/icons/hicolor/scalable/apps/syslinuxos-network-neighbors.svg"
 install -Dm644 "$HERE/packaging/com.syslinuxos.network-neighbors.read.policy" \
     "$STAGE/usr/share/polkit-1/actions/com.syslinuxos.network-neighbors.read.policy"
 install -Dm644 "$HERE/packaging/syslinuxos-network-neighbors.desktop" \
@@ -38,4 +40,4 @@ import sys
 import xml.etree.ElementTree as ET
 ET.parse(sys.argv[1])
 PY
-dpkg-deb --root-owner-group --build "$STAGE" "$OUT/syslinuxos-network-neighbors_0.1.1_all.deb"
+dpkg-deb --root-owner-group --build "$STAGE" "$OUT/syslinuxos-network-neighbors_0.1.2_all.deb"

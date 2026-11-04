@@ -1,11 +1,10 @@
 Package: syslinuxos-network-neighbors
-Version: 0.1.1
+Version: 0.1.2
 Section: net
 Priority: optional
 Architecture: all
 Maintainer: Franco Conidi <fconidi@gmail.com>
-Depends: python3 (>= 3.10), python3-gi, gir1.2-gtk-3.0, pkexec
-Suggests: lldpd
+Depends: python3 (>= 3.10), python3-gi, gir1.2-gtk-3.0, pkexec, lldpd
 Description: Graphical viewer for directly connected LLDP neighbors
  Shows the local interface, neighbor name, remote port and LLDP details.
  Reads an existing lldpd service without changing network configuration.
