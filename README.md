@@ -22,10 +22,10 @@ Then install the app:
 sudo apt install syslinuxos-network-neighbors
 ```
 
-**Option 2 - Debian package.** Download `syslinuxos-network-neighbors_0.1.3_all.deb` from the [latest release](https://github.com/fconidi/syslinuxos-network-neighbors/releases/latest) and install it from the folder where you saved it:
+**Option 2 - Debian package.** Download `syslinuxos-network-neighbors_0.1.4_all.deb` from the [latest release](https://github.com/fconidi/syslinuxos-network-neighbors/releases/latest) and install it from the folder where you saved it:
 
 ```bash
-sudo apt install ./syslinuxos-network-neighbors_0.1.3_all.deb
+sudo apt install ./syslinuxos-network-neighbors_0.1.4_all.deb
 ```
 
 After installation open **SysLinuxOS Network Neighbors** from the **Networking** or **SysLinuxOS Tools** menu, or run `syslinuxos-network-neighbors` in a terminal.
