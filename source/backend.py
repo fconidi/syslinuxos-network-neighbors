@@ -88,11 +88,13 @@ def read_neighbors(runner=subprocess.run):
         result = None
     except subprocess.TimeoutExpired as exc:
         raise NeighborError("timeout") from exc
+    except OSError as exc:
+        raise NeighborError("daemon_unavailable") from exc
     if permission_denied or (result.returncode and "permission denied" in result.stderr.lower()):
         try:
             result = runner(["/usr/bin/pkexec", "/usr/lib/syslinuxos-network-neighbors/read-helper"],
                             capture_output=True, text=True, timeout=90, check=False)
-        except (FileNotFoundError, subprocess.TimeoutExpired) as exc:
+        except (OSError, subprocess.TimeoutExpired) as exc:
             raise NeighborError("authorization_failed") from exc
         if result.returncode:
             raise NeighborError("authorization_failed")

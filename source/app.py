@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Graphical viewer for directly connected LLDP neighbors."""
 
+import logging
 import threading
 
 import gi
@@ -10,6 +11,8 @@ from gi.repository import GLib, Gtk
 
 from backend import NeighborError, read_neighbors
 from i18n import choose_language, tr
+
+_log = logging.getLogger(__name__)
 
 
 class NeighborWindow(Gtk.Window):
@@ -98,6 +101,9 @@ class NeighborWindow(Gtk.Window):
             rows, error = self.reader(), None
         except NeighborError as exc:
             rows, error = [], str(exc)
+        except Exception:
+            _log.exception("Neighbor query failed")
+            rows, error = [], "daemon_unavailable"
         GLib.idle_add(self._show_result, rows, error)
 
     def _show_result(self, rows, error):

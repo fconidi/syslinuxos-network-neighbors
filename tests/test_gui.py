@@ -12,6 +12,20 @@ from backend import Neighbor
 
 @unittest.skipUnless(Gtk.init_check()[0], "GTK display unavailable")
 class WindowTests(unittest.TestCase):
+    def test_unexpected_reader_error_restores_refresh_button(self):
+        def failing_reader():
+            raise OSError(5, "I/O error")
+
+        window = NeighborWindow(reader=failing_reader, language="en")
+        self.addCleanup(window.destroy)
+        until = time.monotonic() + 1
+        while not window.refresh_button.get_sensitive() and time.monotonic() < until:
+            while Gtk.events_pending():
+                Gtk.main_iteration_do(False)
+            time.sleep(0.01)
+        self.assertTrue(window.refresh_button.get_sensitive())
+        self.assertIn("Cannot read lldpd", window.status.get_text())
+
     def test_neighbor_is_visible_with_details(self):
         sample = Neighbor("enp2s0", "switch-a", "Gi1/0/24", "Desk 12",
                           "aa:bb:cc:dd:ee:ff", "192.0.2.10", "LLDP", "1")

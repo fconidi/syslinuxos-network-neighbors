@@ -1,5 +1,5 @@
 Package: syslinuxos-network-neighbors
-Version: 0.1.3
+Version: 0.1.4
 Section: net
 Priority: optional
 Architecture: all

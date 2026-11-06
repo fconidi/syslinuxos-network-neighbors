@@ -59,6 +59,25 @@ class BackendTests(unittest.TestCase):
         self.assertEqual(read_neighbors(runner=runner), [])
         self.assertEqual(seen[1], ["/usr/bin/pkexec", "/usr/lib/syslinuxos-network-neighbors/read-helper"])
 
+    def test_other_command_failure_reports_daemon_unavailable(self):
+        def runner(_argv, **_kwargs):
+            raise OSError(5, "I/O error")
+        with self.assertRaises(NeighborError) as ctx:
+            read_neighbors(runner=runner)
+        self.assertEqual(str(ctx.exception), "daemon_unavailable")
+
+    def test_helper_execution_failure_reports_authorization_failed(self):
+        calls = 0
+        def runner(_argv, **_kwargs):
+            nonlocal calls
+            calls += 1
+            if calls == 1:
+                raise PermissionError(13, "Permission denied")
+            raise OSError(5, "I/O error")
+        with self.assertRaises(NeighborError) as ctx:
+            read_neighbors(runner=runner)
+        self.assertEqual(str(ctx.exception), "authorization_failed")
+
 
 if __name__ == "__main__":
     unittest.main()
